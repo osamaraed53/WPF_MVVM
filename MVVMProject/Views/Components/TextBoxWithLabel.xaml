@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="MVVMProject.Views.Components.TextBoxWithLabel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MVVMProject.Views.Components"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:Name="TextBoxWithLableControl">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding LabelText , ElementName=TextBoxWithLableControl}" 
+                   Grid.Row="0"
+                   />
+
+        <TextBox Text="{Binding TextBoxText, ElementName=TextBoxWithLableControl ,Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"
+                 Width="{Binding TextBoxWidth, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 Height="{Binding TextBoxHeight,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                 Grid.Row="1" />
+    </Grid>
+
+</UserControl>
