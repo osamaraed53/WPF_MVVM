@@ -1,6 +1,7 @@
 ﻿namespace MVVMProject.Models;
 
-public class Hotel
+public interface IHotel { }
+public class Hotel : IHotel
 {
     public readonly ReservationBook _reservationBook;
 

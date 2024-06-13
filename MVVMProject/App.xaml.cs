@@ -1,29 +1,43 @@
-﻿using MVVMProject.Models;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MVVMProject.Models;
+using MVVMProject.MVVM;
+using MVVMProject.ViewModel;
+using System;
 using System.Windows;
 
-namespace MVVMProject;
-
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
-public partial class App : Application
+namespace MVVMProject
 {
-
-
-
-
-    protected override void OnStartup(StartupEventArgs e)
+    public partial class App : Application
     {
+        private readonly ServiceProvider _serviceProvider;
 
-        Hotel hotel = new("Osama Hotel");
+        public App()
+        {
+            IServiceCollection services = new ServiceCollection();
 
-        hotel.MakeReservation(new Reservation(new RoomID(1, 1),"osama" , new DateTime(2000,1,3) ,new DateTime(2000,1,4) ) );
-        hotel.MakeReservation(new Reservation(new RoomID(1, 1), "osama", new DateTime(2000, 1,4 ), new DateTime(2000, 1, 5)));
+            services.AddSingleton<IHotel, Hotel>(serviceProvider => new Hotel("Osama Hotel"));
 
-        IEnumerable<Reservation> reservation = hotel.GetReservauionsForUser("osama");
+            services.AddSingleton<MainWindow>(provider => new MainWindow
+            {
+                DataContext = provider.GetRequiredService<MainViewModel>(),
+            });
 
-        base.OnStartup(e);
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton<MakeReservationViewModel>();
+            services.AddSingleton<ReservationListingViewModel>();
+            services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<Func<Type, ViewModelBase>>(seviceProvider => ViewModelType => (ViewModelBase)seviceProvider.GetRequiredService(ViewModelType));
+
+
+            _serviceProvider = services.BuildServiceProvider();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
+
+            base.OnStartup(e);
+        }
     }
-
-
 }

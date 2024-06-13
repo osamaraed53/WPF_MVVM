@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVMProject.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -25,17 +26,9 @@ namespace MVVMProject.Views
         public MakeReservationView()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
-        private string myVar;
 
-        public string MyProperty
-        {
-            get { return myVar; }
-            set { myVar = value;
-                           }
-        }
 
     }
 }

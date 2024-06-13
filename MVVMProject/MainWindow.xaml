@@ -6,14 +6,21 @@
         xmlns:local="clr-namespace:MVVMProject"
         xmlns:views="clr-namespace:MVVMProject.Views"
         mc:Ignorable="d"
-        xmlns:View="clr-namespace:MVVMProject.Views"
-        Title="Reservoom" Height="450" Width="800"
+        xmlns:viewModel="clr-namespace:MVVMProject.ViewModel"
+        Title="MainWindow" Height="450" Width="800"
         FontSize="15">
+    <Grid Margin="20 10">
+        
 
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewModel:ReservationListingViewModel}">
+                <views:ReservationListingView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MakeReservationViewModel}">
+                <views:MakeReservationView/>
+            </DataTemplate>
+        </Grid.Resources>
 
-    <Grid Margin="20 10" >
-        <views:ReservationListingView />
+        <ContentPresenter Grid.Column="0" Content="{Binding Navigation.CurrentViewModel}" />
     </Grid>
-    
-    
 </Window>

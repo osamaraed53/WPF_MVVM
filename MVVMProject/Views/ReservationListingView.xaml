@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MVVMProject.Views"
+             xmlns:local="clr-namespace:MVVMProject.Views" xmlns:viewmodel="clr-namespace:MVVMProject.ViewModel" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -30,14 +30,12 @@
                         Margin="10 0 0 0"
                         FontSize="24"
                         Content="Make Reservation"
+                        Command="{Binding NavigateToMakeReservationCommand}"
                         />
 
             </Grid>
 
-            <ListView Grid.Row="1" Margin="0 25 0 0">
-                    <ListViewItem />
-                    <ListViewItem />
-                    <ListViewItem />
+            <ListView Grid.Row="1" Margin="0 25 0 0" ItemsSource="{Binding Reservations ,Mode=OneWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment"
@@ -47,11 +45,11 @@
                 </ListView.ItemContainerStyle>
                     <ListView.View>
                         <GridView>
-                            
+         
                             <GridViewColumn Header="Room Id">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="125" Padding="0 0 20 0"/>
+                                    <TextBlock Text="{Binding Path=RoomID, UpdateSourceTrigger=PropertyChanged}" Padding="0 0 20 0"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -59,7 +57,7 @@
                             <GridViewColumn Header="Username">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                    <TextBlock Text="osamaraed53"
+                                    <TextBlock Text="{Binding Path=Username , UpdateSourceTrigger=PropertyChanged}"
                                                Padding="0 0 20 0" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -68,7 +66,7 @@
                             <GridViewColumn Header="start Date">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                    <TextBlock Text="20/10/2002"
+                                    <TextBlock Text="{Binding Path=StartTime  , UpdateSourceTrigger=PropertyChanged}"
                                                Padding="0 0 20 0" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -77,7 +75,7 @@
                             <GridViewColumn Header="End Date">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                    <TextBlock Text="20/8/2555"
+                                    <TextBlock Text="{Binding Path=EndTime  , UpdateSourceTrigger=PropertyChanged}"
                                                Padding="0 0 20 0" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "yO1XOIFoGUPKU8Bm7wfzIdFpR/DQNXD799TXTaY4EB+G5JqkFZmBOub8+9cDEoBVNLTJJx4BJRhfphSUxnT6/w==",
+  "dgSpecHash": "38mkD832ezBXRkmZHGMge6PiUvzPdS40LPWOuM+fly/+CVntjDEY3/OemxphYghgod/R5Swbe2IOVptuGrzdAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\khale\\source\\repos\\MVVMProject\\MVVMProject\\MVVMProject.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\osama\\OneDrive\\Desktop\\WPF_MVVM\\MVVMProject\\MVVMProject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\osama\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\osama\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
