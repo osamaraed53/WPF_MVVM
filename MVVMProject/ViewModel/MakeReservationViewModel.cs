@@ -9,32 +9,55 @@ namespace MVVMProject.ViewModel;
 public class MakeReservationViewModel : ViewModelBase
 {
 
-    //private Hotel _hotel;
+    private Hotel _hotel;
     private string _username;
     private int _roomNumber;
     private int _floorNumber;
     private DateTime _startDate = DateTime.Now;
     private DateTime _endDate = DateTime.Now;
+    private bool _isLoading;
     public RelayCommand SubmitCommand { get; }
     public RelayCommand CancelCommand { get; }
-    //public RelayCommand NavigateToReservationListingCommand { get; set; }
+    public RelayCommand NavigateToReservationListingCommand { get; set; }
 
-    //public RelayCommand MakeReservationCommand { get; }
-    public MakeReservationViewModel()
+    private INavigationService _navigation;
+
+    public INavigationService Navigation
     {
-
-        //_hotel = (Hotel) hotel;
-        SubmitCommand = new RelayCommand(execute => Submit(), canExecute => CanSubmit());
-        CancelCommand = new RelayCommand(execute => Cancel(), canExecute => true);
-
+        get { return _navigation; }
+        set { _navigation = value; }
     }
 
 
+    public MakeReservationViewModel(INavigationService navService, IHotel hotel)
+    {
+        Navigation = navService;
+        _hotel = (Hotel)hotel;
+        SubmitCommand = new RelayCommand( async execute => await SubmitAsync(), canExecute => CanSubmit());
+        CancelCommand = new RelayCommand(execute => Cancel(), canExecute => true);
+        NavigateToReservationListingCommand = new RelayCommand(execute => Navigation.NavigateTo<ReservationListingViewModel>(), canExecute => true);
+
+
+    }
+
+    
+
+    public bool IsLoading
+    {
+        get { return _isLoading; }
+        set
+        {
+            _isLoading = value;
+            OnPropertyChanged();
+        }
+    }
 
     public string Username
     {
         get { return _username; }
-        set { _username = value; }
+        set { _username = value;
+            OnPropertyChanged();
+        }
     }
 
 
@@ -83,15 +106,20 @@ public class MakeReservationViewModel : ViewModelBase
 
     }
 
-    private void Submit()
+    private async Task SubmitAsync()
     {
         try
         {
             Reservation newReservation = new(new RoomID(FloorNumber, RoomNumber), Username, StartDate, EndDate);
-            //_hotel.MakeReservation(newReservation);
+            _hotel.MakeReservation(newReservation);
+            IsLoading = true;
+            await Task.Delay(20000);
+            IsLoading = false;
+
+            Navigation.NavigateTo<ReservationListingViewModel>();
 
         }
-        catch (ReservationConflictException ex)
+        catch 
         {
             MessageBox.Show($"this room not ex","error",MessageBoxButton.OK,MessageBoxImage.Error);
         }

@@ -8,6 +8,15 @@
     <Application.Resources>
 
 
+            <DataTemplate DataType="{x:Type viewModel:ReservationListingViewModel}">
+                <views:ReservationListingView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MakeReservationViewModel}">
+                <views:MakeReservationView/>
+            </DataTemplate>
+        
+        
+
     </Application.Resources>
 </Application>
 

@@ -30,3 +30,5 @@ C:\Users\osama\OneDrive\Desktop\WPF_MVVM\MVVMProject\obj\Debug\net8.0-windows\re
 C:\Users\osama\OneDrive\Desktop\WPF_MVVM\MVVMProject\obj\Debug\net8.0-windows\MVVMProject.pdb
 C:\Users\osama\OneDrive\Desktop\WPF_MVVM\MVVMProject\obj\Debug\net8.0-windows\MVVMProject.genruntimeconfig.cache
 C:\Users\osama\OneDrive\Desktop\WPF_MVVM\MVVMProject\obj\Debug\net8.0-windows\ref\MVVMProject.dll
+C:\Users\osama\OneDrive\Desktop\WPF_MVVM\MVVMProject\obj\Debug\net8.0-windows\App.baml
+C:\Users\osama\OneDrive\Desktop\WPF_MVVM\MVVMProject\bin\Debug\net8.0-windows\LoadingSpinnerControl.dll

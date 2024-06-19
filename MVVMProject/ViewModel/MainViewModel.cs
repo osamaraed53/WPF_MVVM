@@ -16,17 +16,16 @@ namespace MVVMProject.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        public RelayCommand NavigateToReservationListingCommand { get; }
         public RelayCommand NavigateToMakeReservationCommand { get; }
-        public RelayCommand NavigateToHomeCommand { get; }
+        public RelayCommand NavigateToReservationListingCommand { get; }
 
         public MainViewModel(INavigationService navService)
         {
             Navigation = navService;
+            NavigateToMakeReservationCommand = new RelayCommand(execute => Navigation.NavigateTo<MakeReservationViewModel>(), canExecute => true); 
+            NavigateToReservationListingCommand = new RelayCommand(execute => Navigation.NavigateTo<ReservationListingViewModel>(), canExecute => true);
+
             Navigation.NavigateTo<ReservationListingViewModel>();
-            NavigateToReservationListingCommand = new RelayCommand(execute => Navigation.NavigateTo<ReservationListingViewModel>(),canExecute => true);
-            NavigateToMakeReservationCommand = new RelayCommand(execute => Navigation.NavigateTo<MakeReservationViewModel>(),canExecute => true);
         }
 
 

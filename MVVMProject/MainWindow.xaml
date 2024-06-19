@@ -10,17 +10,18 @@
         Title="MainWindow" Height="450" Width="800"
         FontSize="15">
     <Grid Margin="20 10">
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="5*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0 0 20 0"> 
+            <Button Content="To Make Reservation" Command="{Binding NavigateToReservationListingCommand}"/>
+            <Button Content="Reservation" Command="{Binding NavigateToMakeReservationCommand}"/>
+        </StackPanel>
         
-
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type viewModel:ReservationListingViewModel}">
-                <views:ReservationListingView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:MakeReservationViewModel}">
-                <views:MakeReservationView/>
-            </DataTemplate>
-        </Grid.Resources>
-
-        <ContentPresenter Grid.Column="0" Content="{Binding Navigation.CurrentViewModel}" />
+        <ContentPresenter Grid.Column="1" Content="{Binding Navigation.CurrentViewModel}" />
     </Grid>
 </Window>
